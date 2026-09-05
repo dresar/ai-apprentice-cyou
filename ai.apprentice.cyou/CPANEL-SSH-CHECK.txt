@@ -1,0 +1,19 @@
+Verifikasi API setelah deploy (SSH cPanel)
+==========================================
+
+Tujuan: memastikan server hidup (/ping, /healthz) lalu menguji endpoint utama.
+
+Persyaratan: Node.js, folder server dengan .env (JWT_SECRET + DATABASE_URL).
+
+1) Cek cepat + audit lengkap (disarankan)
+  cd /path/ke/server
+  node scripts/cpanel-deploy-verify.mjs https://SUBDOMAIN-DOMAIN-ANDA.com
+
+2) Hanya audit lengkap
+  API_BASE_URL=https://DOMAIN npm run smoke:prod
+
+3) Bash
+  chmod +x scripts/cpanel-post-deploy-check.sh
+  ./scripts/cpanel-post-deploy-check.sh https://DOMAIN
+
+Exit code 0 = semua cek lolos.
